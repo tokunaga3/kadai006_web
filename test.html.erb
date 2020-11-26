@@ -25,11 +25,12 @@
 
     <form action="goya.cgi" method="POST">
        下記のボタンを押すと、ゴーヤの大きさと売った相手の情報ページに飛びます<br><br>
-       <!-- valueには、送りたいデータを代入する -->
+       <input type="text" name="goya" value="<%= data.join(' ') %>">
+       <input type="submit" name="送信" >
+     </form>   <!-- valueには、送りたいデータを代入する -->
+    <form action="goya2.cgi" method="POST">
        <!-- name="goya"を、情報の目印とする -->
-      <input type="text" name="goya" value="<%= data.join(' ') %>">
-      <input type="submit" name="送信" >
-      <input type="text" name="goya" value="<%= data1.join(' ') %>">
+       <input type="text" name="goya2" value="<%= data1.join(' ') %>">
       <input type="submit" name="送信" >
     </form>
   </body>
