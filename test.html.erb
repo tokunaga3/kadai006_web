@@ -12,16 +12,24 @@
       <input type="text"  name="input" ><br>
       <input type="submit" name="送信" >
     </form>
-    <% result = connection.exec("SELECT * FROM crops WHERE give_for != '自家消費'  AND quality = false;") %>
+    <% result = connection.exec(" SELECT * FROM crops WHERE give_for != '自家消費';") %>
+    <% quality = connection.exec("SELECT * FROM crops WHERE quality = false;") %>
     <% data = [] %>
     <% result.each do |record| %>
       <%  data << "ゴーヤの大きさ：#{record["weight"]}　売った相手：#{record["give_for"]}" %>
     <% end %>
+    <% data1 = [] %>
+    <% quality.each do |reco| %>
+      <%  data1 << "ゴーヤの大きさ：#{reco["weight"]}　売った相手：#{reco["give_for"]}" %>
+    <% end %>
+
     <form action="goya.cgi" method="POST">
        下記のボタンを押すと、ゴーヤの大きさと売った相手の情報ページに飛びます<br><br>
        <!-- valueには、送りたいデータを代入する -->
        <!-- name="goya"を、情報の目印とする -->
       <input type="text" name="goya" value="<%= data.join(' ') %>">
+      <input type="submit" name="送信" >
+      <input type="text" name="goya" value="<%= data1.join(' ') %>">
       <input type="submit" name="送信" >
     </form>
   </body>
